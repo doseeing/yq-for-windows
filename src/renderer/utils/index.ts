@@ -3,8 +3,8 @@ export default class Utils {
     return navigator?.language?.split('-')[0] || 'en'
   }
 
-  static async openExternal(url: string): Promise<void> {
-    await window.mainApi.send('msgOpenExternalLink', url)
+  static async openExternal(url: string): Promise<any> {
+    return window.mainApi.invoke('msgOpenExternalLink', url)
   }
 
   static async openFile(type: string): Promise<any> {

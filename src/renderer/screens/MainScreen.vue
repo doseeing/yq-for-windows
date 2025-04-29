@@ -14,6 +14,7 @@ const theme = useTheme()
 const languages = ref(['en'])
 const appVersion = ref('Unknown')
 const selectedFile = ref('')
+const yqVersion = ref('N/A')
 
 onMounted((): void => {
   languages.value = availableLocales
@@ -36,11 +37,15 @@ const handleChangeLanguage = (val): void => {
   locale.value = val
 }
 
-const handleOpenDocument = async (): Promise<void> => {
-  await openExternal('https://vutron.cdget.com')
+const handleOpenDocument = async () => {
+  const result = await openExternal('https://vutron.cdget.com')
+
+  if (result) {
+    yqVersion.value = result
+  }
 }
 
-const handleOpenGitHub = async (): Promise<void> => {
+const handleOpenGitHub = async () => {
   await openExternal('https://github.com/jooy2/vutron')
 }
 
@@ -72,7 +77,7 @@ const handleOpenFile = async () => {
         <h2 class="my-4">{{ t('desc.welcome-title') }}</h2>
         <p>{{ t('desc.welcome-desc') }}</p>
         <p class="my-4">
-          App Version: <strong>{{ appVersion }}</strong>
+          App Version: <strong>{{ appVersion }}</strong> YQ Version <strong>{{ yqVersion }}</strong>
         </p>
         <p v-if="selectedFile">{{
           t('desc.selected-file', {

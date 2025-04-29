@@ -34,9 +34,9 @@ export default defineConfig(({ mode }) => {
       vite: {
         root: resolve('.'),
         base: './',
+        publicDir: resolve('./src/public'),
         build: {
           assetsDir: '.',
-          publicDir: resolve('./src/public'),
           outDir: 'dist/main',
           rollupOptions: {
             external: ['electron', ...builtinModules]
