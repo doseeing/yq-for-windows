@@ -5,7 +5,9 @@ import path from 'path'
 import { promisify } from 'util'
 
 async function runBinary() {
-  const binaryPath = path.join(__dirname, 'static', 'yq_darwin_arm64')
+  const binaryPath = process.env.NODE_ENV === 'development'
+    ? path.join(__dirname, '..', '..', 'bin', 'yq_darwin_arm64')
+    : path.join(process.resourcesPath, 'bin', 'yq_darwin_arm64')
   console.log('Running binary at:', binaryPath)
 
   const execFileAsync = promisify(execFile)
