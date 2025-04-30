@@ -34,7 +34,6 @@ export default defineConfig(({ mode }) => {
       vite: {
         root: resolve('.'),
         base: './',
-        publicDir: resolve('./src/public'),
         build: {
           assetsDir: '.',
           outDir: 'dist/main',
